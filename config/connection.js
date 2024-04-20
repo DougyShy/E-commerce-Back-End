@@ -1,15 +1,37 @@
+const Sequelize = require('sequelize');
 require('dotenv').config();
 
-const Sequelize = require('sequelize');
+/*const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  //"postgres",
+  //process.env.DB_PASSWORD,
+  "fossil69",
+  {
+    host: 'localhost',
+    dialect: 'postgres'
+  }
+);
 
-const sequelize = process.env.JAWSDB_URL
-  ? new Sequelize(process.env.JAWSDB_URL)
-  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
+module.exports = sequelize;*/
+
+let sequelize;
+
+if (process.env.DB_URL) {
+  sequelize = new Sequelize(process.env.DB_URL);
+} else {
+  console.log("HERE IN CONNECTION.JS");
+  sequelize = new Sequelize(
+    'ecommerce_db',
+    //process.env.DB_USER,
+    'postgres',
+    //process.env.DB_PASSWORD,
+    'fossil69',
+    {
       host: 'localhost',
-      dialect: 'mysql',
-      dialectOptions: {
-        decimalNumbers: true,
-      },
-    });
+      dialect: 'postgres'
+    }
+  );
+}
 
 module.exports = sequelize;
