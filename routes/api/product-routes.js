@@ -115,9 +115,9 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/id', (req, res) => {
+router.delete('/:id', (req, res) => {
   // Looks for the product based id given in the request parameters
-  Book.destroy({
+  Product.destroy({
     where: {
       id: req.params.id,
     },
